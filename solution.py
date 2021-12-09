@@ -28,7 +28,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
    fromCommand = "MAIL FROM: <source@gmail.com> \r\n"
    clientSocket.send(fromCommand.encode())
    recv2 = clientSocket.recv(1024)
-   # print(recv1)
+   # print(recv2)
    if recv1[:3] != '250':
        #print('250 reply not received from server.')
 
@@ -36,7 +36,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
    rcptToCommand = "RCPT TO: <destination@gmail.com> \r\n"
    clientSocket.send(rcptToCommand.encode())
    recv3 = clientSocket.recv(1024)
-   # print(recv1)
+   # print(recv3)
    if recv1[:3] != '250':
        # print('250 reply not received from server.')
 
@@ -44,31 +44,31 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
    data = "DATA\r\n"
    clientSocket.send(data.encode())
    recv4 = clientSocket.recv(1024)
-   # print(recv1)
+   # print(recv4)
    if recv1[:3] != '250':
      # print('250 reply not received from server.')
 
    # Send message data.
-   subject = "Subject: SMTP Test \r\n\r\n"
+   subject = "Subject: Test \r\n\r\n"
    clientSocket.send(subject.encode())
    clientSocket.send(msg.encode())
    clientSocket.send(endmsg.encode())
    recv5 = clientSocket.recv(1024)
-   # print(recv1)
+   # print(recv5)
    if recv1[:3] != '250':
       # print('250 reply not received from server.')
 
    # Message ends with a single period.
-   lientSocket.send(endmsg.encode())
+   clientSocket.send(endmsg.encode())
    recv6 = clientSocket.recv(1024)
-   # print(recv1)
+   # print(recv6)
    if recv1[:3] != '250':
       # print('250 reply not received from server.')
 
    # Send QUIT command and get server response.
    clientSocket.send("QUIT\r\n".encode())
    recv7 = clientSocket.recv(1024)
-   # print(recv1)
+   # print(recv7)
    clientSocket.close()
 
 if __name__ == '__main__':
